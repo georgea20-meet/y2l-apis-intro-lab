@@ -7,10 +7,6 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-############################
-### Lab Part 1: JSON 
-############################
-
 @app.route('/movie')
 def movies():
     json_string = """
@@ -20,8 +16,12 @@ def movies():
                     "image_url": "https://ksassets.timeincuk.net/wp/uploads/sites/55/2018/02/KXC1W2-920x584.jpg"
                     }
                     """
-    return render_template('movie.html', movie={})
 
+    parsed_json = json.loads(json_string)
+
+    print(parsed_json['title'] + "will be released on the" + parsed_json['releaseDate'] + parsed_json['image_url'])
+    
+    return render_template("movie.html" , movie = parsed_json)
 
 @app.route('/tvshows')
 def tv_shows():
@@ -55,6 +55,11 @@ def tv_shows():
     ]
     }]    
     """
+
+    parsed_json = parsed.loads(json_string)
+
+    print(parsed_json['name'] + parsed_json['type'] + parsed_json['language'] + parsed_json['genres'])
+
     # Write code here to take the `json_string` and return list of movies to the user
 
 
