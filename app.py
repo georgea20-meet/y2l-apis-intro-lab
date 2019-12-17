@@ -56,14 +56,15 @@ def tv_shows():
     }]    
     """
 
-    parsed_json = parsed.loads(json_string)
+    parsed_json = json.loads(json_string)
+    
+    #print(parsed_json['name'] + parsed_json['type'] + parsed_json['language'] + parsed_json['genres'])
 
-    print(parsed_json['name'] + parsed_json['type'] + parsed_json['language'] + parsed_json['genres'])
 
     # Write code here to take the `json_string` and return list of movies to the user
 
 
-    return render_template('tv_shows.html')
+    return render_template('tv_shows.html' , tvshows = parsed_json)
 
 
 ############################
